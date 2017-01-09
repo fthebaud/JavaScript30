@@ -71,10 +71,18 @@ progress.addEventListener('mouseup', () => mouseDown = false);
 
 const fullScreenButton = document.querySelector('button#fullscreen');
 
+let fullscreen = false;
 function toggleFullScreen() {
+  if (!fullscreen) {
     console.log(window.innerWidth, window.innerHeight);
-    video.style.width = `${window.innerWidth}px`;
-    video.style.height = `${window.innerHeight}px`;
+    document.querySelector('body').style.margin = '0';
+    document.querySelector('body').style.overflow = 'hidden';
+    player.style.minWidth = `${window.innerWidth}px`;
+    player.style.maxHeight = `${window.innerHeight}px`;
+  } else {
+    player.style.minWidth = '750px';
+  }
+  fullscreen = !fullscreen;
 }
 
 fullScreenButton.addEventListener('click', toggleFullScreen);
