@@ -72,5 +72,8 @@ module.exports = {
     //'space-before-function-paren': ['warn', 'never'],
     'space-in-parens': ['warn', 'never'],
     'yoda': ['warn', 'never'],
+
+    //ES6
+    'arrow-body-style':  ['error', 'as-needed']
   }
 }
