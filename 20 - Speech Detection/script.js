@@ -4,7 +4,7 @@
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const recognition = new window.SpeechRecognition();
-recognition.interimResults = true; //on veut les résultats intérmédiaires, on ne veut pas avoir à attendre d'arreter de parler pour avoir les resultats
+recognition.interimResults = true; //on veut les resultats intermediaires, on ne veut pas avoir a attendre d'arreter de parler pour avoir les resultats
 
 // on insere le texte dans un paragraphe
 const words = document.querySelector('.words');
@@ -23,22 +23,25 @@ recognition.addEventListener('result', event => {
   // si le resultat est final, on remplace p par un nouveau p
   if (event.results[0].isFinal) {
     analyse(transcript);
-    let p = document.createElement('p');
-    words.appendChild(p);
+    p.textContent = '';
+    let pFinal = document.createElement('p');
+    pFinal.textContent = transcript;
+    p.insertAdjacentElement('afterend', pFinal);
   }
 
 });
 
 function analyse(transcript) {
-  if (transcript.includes('the most beautiful dog')) {
+  if (transcript.includes('most beautiful dog')) {
     const image = document.createElement('img');
     image.src = 'loustic.jpg';
-    image.style ='opacity: 0 ; transition: opacity 3s; width: 415px; height:550px';
+    image.classList.add('doggo');
     image.onload = function() {
       this.style.opacity='1';
     };
     // image.onload = (e) => e.target.style.opacity='1';
-    document.querySelector('body').appendChild(image);
+    const body = document.querySelector('body');
+    body.insertBefore(image, body.firstChild);
   }
 }
 
