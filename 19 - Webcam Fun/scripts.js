@@ -21,7 +21,7 @@ function getVideo() {
 
 //every 16ms (60fps), take a screenshot from the webcam and paint it on the canvas
 function paintToCanvas() {
-  const width = video.videoWidth; // different de video.width ? taille de la video, et non pas de l'élément <video> ?
+  const width = video.videoWidth; // different de video.width ? taille de la video, et non pas de l'ï¿½lï¿½ment <video> ?
   const height = video.videoHeight;
   canvas.width = width;
   canvas.height = height;
@@ -29,11 +29,11 @@ function paintToCanvas() {
   return setInterval(() => {
     ctx.drawImage(video, 0, 0);
 
-    //recupération des pixels de l'image pour faire des trucs funky
+    //recuperation des pixels de l'image pour faire des trucs funky
     let pixels = ctx.getImageData(0, 0, width, height);
     //Array : r,g,b,alpha,r,g,b,alpha, etc. 4 entries in the array for each pixel
     //let's mess with the pixels
-    pixels = redEffect(pixels);
+    // pixels = redEffect(pixels);
 
     // pixels = rgbtSplit(pixels);
 
@@ -47,12 +47,12 @@ function takePhoto() {
   snap.currentTime = 0; //rewind sound every time
   snap.play();
   // get the data from the canvas. data will be a base64 string
-  const data = canvas.getDataURL('image/jpeg');
+  const data = canvas.toDataURL('image/jpeg');
   // create the download link for the snapshot
   const link = document.createElement('a');
   link.href = data;
   link.setAttribute('download', 'handsome'); //name of the file
-  link.innerHTML = `<img src="${data}" alt="handsome me"`;
+  link.innerHTML = `<img src="${data}" alt="handsome me"/>`;
   // insert the link
   strip.insertBefore(link, strip.firstChild);
 }
