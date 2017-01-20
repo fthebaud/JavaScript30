@@ -67,3 +67,8 @@ h1 {
 .hole.up .mole {
   top:0;
 }
+
+button {
+  position: relative;
+  left: 50%;
+}
